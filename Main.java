@@ -27,7 +27,7 @@ class Main {
                         break;
                     case 4:
                         try {
-                            System.out.println("Current Students: ");
+                            System.out.println("Current Students:");
                             FileReader fr = new FileReader("names.txt");
                             Scanner fileScanner = new Scanner(fr);
                             while (fileScanner.hasNext()) {
