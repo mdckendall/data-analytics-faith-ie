@@ -1,14 +1,50 @@
 import java.io.FileReader;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 class Main {
-	public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
+        doThing();
+    }
 
-		ArrayList<String> arrayList = new ArrayList<>();
-		FileReader fr = new FileReader("names.txt");
-		Scanner fileScanner = new Scanner(fr);
-		
-	}
+    public static void doThing() {
+        try {
+            while (true) {
+                System.out.println("Press 1 to learn about salary.\nPress 2 to learn about the job.\nPress 3 to learn about demand.\nPress 4 to view current students.\nPress 5 to quit.");
+                Scanner choiceScanner = new Scanner(System.in);
+                int in = choiceScanner.nextInt();
+                switch (in) {
+                    case 1:
+                        System.out.println("$98,345 average salary in South Florida!");
+                        break;
+                    case 2:
+                        System.out.println("US News - 100 Best Jobs!");
+                        break;
+                    case 3:
+                        System.out.println("Top 10 Forbes In-Demand Jobs!");
+                        break;
+                    case 4:
+                        try {
+                            System.out.println("Current Students:");
+                            FileReader fr = new FileReader("names.txt");
+                            Scanner fileScanner = new Scanner(fr);
+                            while (fileScanner.hasNext()) {
+                                System.out.println(fileScanner.nextLine());
+                            }
+                        } catch (FileNotFoundException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        break;
+                    case 5:
+                        System.exit(0);
+                        break;
+                }
+
+            }
+        } catch (NoSuchElementException ex) {
+            System.out.println(Arrays.toString(ex.getStackTrace()));
+        }
+    }
 }
